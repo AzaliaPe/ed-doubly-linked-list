@@ -7,11 +7,13 @@ List::List()
 
 List::~List()
 {
+    
 }
 
 void List::AddFront(Book* book)
 {
     Node* node{new Node(book)};
+
     if(IsEmpty())
     {
         head = node;
@@ -38,6 +40,7 @@ void List::AddFront(Book* book)
 void List::AddBack(Book* book)
 {
     Node* node{new Node(book)};
+
     if(IsEmpty())
     {
         tail = node;
@@ -63,24 +66,49 @@ void List::AddBack(Book* book)
 
 void List::RemoveFront()
 {
-
+    if(!head)
+    {
+        std::cout << "Lista vacia" << std::endl;
+        return;
+    }
+    else
+    {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+    }
 }
+
 void List::RemoveBack()
 {
-
+    if(!tail)
+    {
+        std::cout << "Lista vacia" << std::endl;
+        return;
+    }
+    else
+    {
+        Node* temp = tail;
+        tail = tail->back;
+        delete temp;
+    }
 }
+
 Book* List::GetFront() const
 {
     return head->book;
 }
+
 Book* List::GetBack() const
 {
     return tail->book;
 }
+
 bool List::IsEmpty() const
 {
     return !head && !tail;
 }
+
 void List::PrintFront()
 {
     if(IsEmpty())
@@ -89,10 +117,18 @@ void List::PrintFront()
     }
     else
     {
-        
+        Node* temp{head};
+
+        while (temp)
+        {
+            std::cout << "Nombre del Libro: " << temp->book->GetName() << std::endl;
+            std::cout << "Nombre del Autor: " << temp->book->GetAuthor() << std::endl;
+            std::cout << std::endl;
+            temp = temp->next;
+        }
     }
-    
 }
+
 void List::PrintBack()
 {
     if(IsEmpty())
@@ -101,6 +137,14 @@ void List::PrintBack()
     }
     else
     {
-        
+        Node* temp{tail};
+
+        while (temp)
+        {
+            std::cout << "Nombre del Libro: " << temp->book->GetName() << std::endl;
+            std::cout << "Nombre del Autor: " << temp->book->GetAuthor() << std::endl;
+            std::cout << std::endl;
+            temp = temp->back;
+        }
     }
 }

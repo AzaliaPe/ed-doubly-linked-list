@@ -17,4 +17,7 @@ class List
         bool IsEmpty() const;
         void PrintFront();
         void PrintBack();
+
+        //void GetAt();
+        //void AddMiddle();
 };
